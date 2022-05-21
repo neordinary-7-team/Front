@@ -19,11 +19,7 @@ export default function MainNavigator() {
     >
       <Drawer.Screen name="Login" component={Login} />
       <Drawer.Screen name="SignUp" component={SignUp} />
-      <Drawer.Screen
-        name="TabNavigator"
-        component={TabNavigator}
-        options={{ title: 'Home' }}
-      />
+      <Drawer.Screen name="TabNavigator" component={TabNavigator} options={{ title: 'Home' }} />
     </Drawer.Navigator>
   );
 }

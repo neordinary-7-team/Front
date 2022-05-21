@@ -1,11 +1,11 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import React, { useCallback } from 'react';
 import { ScrollEnabledProvider } from '../contexts';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import NavigationHeader from '../theme/NavigationHeader';
 import { SafeAreaView, View, MaterialCommunityIcon as Icon } from '../theme';
 
-const Home = () => {
+const My = () => {
   const navigation = useNavigation();
 
   const logout = useCallback(() => {
@@ -20,17 +20,19 @@ const Home = () => {
       <ScrollEnabledProvider>
         <View style={[styles.view]}>
           <NavigationHeader
-            title="홈"
+            title="MyMyMy"
             Left={() => <Icon name="menu" size={30} onPress={open} />}
-            Right={() => <Icon name="logout" size={30} onPress={logout} />}
+            // Right={() => <Icon name="logout" size={30} onPress={logout} />}
           />
+          {/* 화면상단 문구 */}
+          <Text>여어ㅓㅓㅓㅓㅓㅓㅓㅓㅓ어기에 만들어놓은 약속장소들으으으으</Text>
         </View>
       </ScrollEnabledProvider>
     </SafeAreaView>
   );
 };
 
-export default Home;
+export default My;
 
 const styles = StyleSheet.create({
   view: { flex: 1 },
