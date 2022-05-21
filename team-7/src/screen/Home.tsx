@@ -4,6 +4,7 @@ import { ScrollEnabledProvider } from '../contexts';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import NavigationHeader from '../theme/NavigationHeader';
 import { SafeAreaView, View, MaterialCommunityIcon as Icon } from '../theme';
+import ExpoCalendar from '../components/ExpoCalendar'
 
 const Home = () => {
   const navigation = useNavigation();
@@ -24,6 +25,7 @@ const Home = () => {
             Left={() => <Icon name="menu" size={30} onPress={open} />}
             Right={() => <Icon name="logout" size={30} onPress={logout} />}
           />
+          <ExpoCalendar />
         </View>
       </ScrollEnabledProvider>
     </SafeAreaView>
