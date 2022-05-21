@@ -30,7 +30,6 @@ const My = () => {
             // Right={() => <Icon name="logout" size={30} onPress={logout} />}
           />
           {/* 화면상단 문구 */}
-          <Text>자신이 참여한 약속장소들 모음</Text>
           {ListData.mylist.map((user, index) => (
             <TouchableOpacity key={index} onPress={() => goDetails(user.schedulesIdx)}>
               <View style={[styles.listView]}>
@@ -63,7 +62,8 @@ const styles = StyleSheet.create({
     borderColor: Colors.lightBlue500,
     // width: '100%',
     padding: 5,
-    marginBottom: 15,
+    marginBottom: 7,
+    marginTop: 7,
     alignSelf: 'center',
     // justifyContent: 'center',
   },
