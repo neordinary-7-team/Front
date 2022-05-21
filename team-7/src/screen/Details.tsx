@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   nameView: {
-    borderWidth: 1,
     borderRadius: 15,
     alignSelf: 'center',
     padding: 10,

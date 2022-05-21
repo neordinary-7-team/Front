@@ -4,54 +4,67 @@ import * as D from '../data';
 import { AutoFocusProvider, useAutoFocus } from '../contexts';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView, Text, TextInput, TouchableView, View } from '../theme';
+import axios from 'axios';
+import { Colors } from 'react-native-paper';
+
 const SignUp = () => {
-  const [person, setPerson] = useState<D.IPerson>(D.createRandomPerson());
-  const [password, setPassword] = useState<string>('1');
-  const [confirmPassword, setConfirmPassword] = useState<string>(password);
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const focus = useAutoFocus();
   const navigation = useNavigation();
-  const goHomeNavigator = useCallback(() => {
-    if (password === confirmPassword) navigation.navigate('TabNavigator');
-    else Alert.alert('password is invalid');
-  }, [password, confirmPassword]);
   const goLogin = useCallback(() => navigation.navigate('Login'), []);
-
+  const goHomeNavigator = useCallback(() => {
+    axios
+      .post('http://15.165.67.130:9000/users/signup', {
+        name: username,
+        email: email,
+        password: password,
+      })
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data.message == '이미 존재하는 유저입니다.') {
+          Alert.alert('이미 가입한 이메일입니다!!!!!!!!!!!!!!!!!!!');
+        } else {
+          navigation.navigate('TabNavigator');
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
   return (
     <SafeAreaView>
       <View style={styles.view}>
         <AutoFocusProvider contentContainerStyle={styles.keyboardAwareFocus}>
           <View style={styles.textView}>
-            <Text style={styles.text}>email</Text>
+            <Text style={styles.loginsignin}>SIGN UP</Text>
+            <Text style={styles.text}>UserName</Text>
             <View border style={styles.textInputView}>
               <TextInput
                 onFocus={focus}
                 style={styles.textInput}
-                value={person.email}
-                onChangeText={(email) =>
-                  setPerson((person) => ({ ...person, email }))
-                }
+                value={username}
+                onChangeText={setUsername}
+                placeholder="what is your name?"
+              />
+            </View>
+          </View>
+          <View style={styles.textView}>
+            <Text style={styles.text}>Email</Text>
+            <View border style={styles.textInputView}>
+              <TextInput
+                onFocus={focus}
+                style={styles.textInput}
+                value={email}
+                onChangeText={setEmail}
                 placeholder="enter your email"
               />
             </View>
           </View>
           <View style={styles.textView}>
-            <Text style={styles.text}>name</Text>
-            <View border style={styles.textInputView}>
-              <TextInput
-                secureTextEntry
-                onFocus={focus}
-                style={styles.textInput}
-                value={person.name}
-                onChangeText={(name) =>
-                  setPerson((person) => ({ ...person, name }))
-                }
-                placeholder="enter your name"
-              />
-            </View>
-          </View>
-          <View style={styles.textView}>
-            <Text style={styles.text}>password</Text>
+            <Text style={styles.text}>Password</Text>
             <View border style={styles.textInputView}>
               <TextInput
                 secureTextEntry
@@ -63,29 +76,13 @@ const SignUp = () => {
               />
             </View>
           </View>
-          <View style={styles.textView}>
-            <Text style={styles.text}>confirm password</Text>
-            <View border style={styles.textInputView}>
-              <TextInput
-                secureTextEntry
-                onFocus={focus}
-                style={styles.textInput}
-                value={password}
-                onChangeText={setConfirmPassword}
-                placeholder="enter your password"
-              />
-            </View>
-          </View>
-          <TouchableView
-            notification
-            style={styles.TouchableView}
-            onPress={goHomeNavigator}
-          >
-            <Text style={styles.text}>SignUp</Text>
+
+          <TouchableView notification style={styles.TouchableView} onPress={goHomeNavigator}>
+            <Text style={styles.text}>SIGN UP</Text>
           </TouchableView>
-          <Text style={[styles.text, { marginTop: 15 }]} onPress={goLogin}>
-            Login
-          </Text>
+          <TouchableView style={styles.anotherTouchableView} onPress={goLogin}>
+            <Text style={[styles.text]}>LOG IN</Text>
+          </TouchableView>
         </AutoFocusProvider>
       </View>
     </SafeAreaView>
@@ -101,7 +98,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: 20,
+    fontSize: 15,
   },
   keyboardAwareFocus: {
     flex: 1,
@@ -129,5 +126,21 @@ const styles = StyleSheet.create({
     width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: Colors.lightBlue500,
+    marginBottom: 15,
+  },
+  anotherTouchableView: {
+    borderWidth: 1,
+    borderRadius: 9,
+    borderColor: Colors.lightBlue500,
+    flexDirection: 'row',
+    height: 50,
+    width: '90%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loginsignin: {
+    textAlign: 'center',
+    fontSize: 35,
   },
 });
