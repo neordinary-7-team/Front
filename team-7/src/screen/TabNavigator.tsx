@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from 'react-native-paper';
 import type { RouteProp, ParamListBase } from '@react-navigation/native';
 import MyNavigator from './MyNavigator';
+import My from './My';
 type TabBarIconProps = {
   focused: boolean;
   color: string;
@@ -48,7 +49,7 @@ export default function TabNavigator() {
         component={HomeNavigator}
         options={{ tabBarLabel: 'Home', tabBarBadge: 3 }}
       />
-      <Tab.Screen name="My" component={MyNavigator} />
+      <Tab.Screen name="My" component={My} />
     </Tab.Navigator>
   );
 }
