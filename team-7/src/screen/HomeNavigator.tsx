@@ -1,10 +1,8 @@
 import React, { useMemo } from 'react';
-import {
-  CardStyleInterpolators,
-  StackNavigationOptions,
-} from '@react-navigation/stack';
+import { CardStyleInterpolators, StackNavigationOptions } from '@react-navigation/stack';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './Home';
+import My from './My';
 import { useNavigationHorizontalInterpolator } from '../hooks';
 
 const Stack = createStackNavigator();
@@ -16,14 +14,14 @@ export default function HomeNavigator() {
       gestureDirection: 'horizontal-inverted',
       CardStyleInterpolator: interpolator,
     }),
-    []
+    [],
   );
   const rightOption = useMemo<StackNavigationOptions>(
     () => ({
       gestureDirection: 'horizontal',
       CardStyleInterpolator: interpolator,
     }),
-    []
+    [],
   );
 
   return (
