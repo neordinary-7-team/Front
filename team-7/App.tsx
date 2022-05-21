@@ -1,5 +1,6 @@
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import MyStack from './components/Navigation/MyStack';
+import MyStack from './components/Navigation';
 
 export default function App() {
   return (
