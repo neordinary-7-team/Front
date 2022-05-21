@@ -40,7 +40,7 @@ const Details = (num: number) => {
 export default Details;
 
 const styles = StyleSheet.create({
-  view: { flex: 1, flexDirection: 'column', padding: 5 },
+  view: { flex: 1 },
   text: { marginRight: 10, fontSize: 20 },
   listView: {
     borderWidth: 1,

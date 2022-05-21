@@ -27,7 +27,7 @@ const My = () => {
           <NavigationHeader
             title="내 일정들"
             Left={() => <Icon name="menu" size={30} onPress={open} />}
-            // Right={() => <Icon name="logout" size={30} onPress={logout} />}
+            Right={() => <Icon name="logout" size={30} color="white" />}
           />
           {/* 화면상단 문구 */}
           {ListData.mylist.map((user, index) => (
@@ -53,7 +53,7 @@ const My = () => {
 export default My;
 
 const styles = StyleSheet.create({
-  view: { flex: 1, flexDirection: 'column', padding: 5 },
+  view: { flex: 1 },
   text: { marginRight: 10, fontSize: 20 },
   listView: {
     flexDirection: 'row',
