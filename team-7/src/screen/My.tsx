@@ -8,8 +8,11 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import ListData from '../../db.json';
 import { Colors } from 'react-native-paper';
+import { useRecoilState } from 'recoil';
 
 const My = () => {
+  // const [userIdx, setUserIdx] = useRecoilState(1);
+
   const navigation = useNavigation();
   const open = useCallback(() => {
     navigation.dispatch(DrawerActions.openDrawer());
@@ -20,6 +23,29 @@ const My = () => {
     // console.log(e);
     // console.log('-----------------');
   }, []);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [list, setList] = useState([]);
+  // console.log(ListData.mylist);
+
+  const fetchNews = async () => {
+    try {
+      setList([]);
+      setError(null);
+      setLoading(true);
+      const response = await axios.get('http://15.165.67.130:9000/schedules/1');
+      console.log(response.data.result);
+      setList(response.data.result); //api잘모슸ㅁ ㅋㅋ수정해여해
+    } catch (e) {
+      console.log('err');
+      console.log(e);
+      //setError(e);
+    }
+    setLoading(false);
+  };
+  useEffect(() => {
+    fetchNews();
+  }, []);
   return (
     <SafeAreaView>
       <ScrollEnabledProvider>
@@ -27,7 +53,7 @@ const My = () => {
           <NavigationHeader
             title="내 일정들"
             Left={() => <Icon name="menu" size={30} onPress={open} />}
-            // Right={() => <Icon name="logout" size={30} onPress={logout} />}
+            Right={() => <Icon name="logout" size={30} color="white" />}
           />
           {/* 화면상단 문구 */}
           {ListData.mylist.map((user, index) => (
@@ -53,7 +79,7 @@ const My = () => {
 export default My;
 
 const styles = StyleSheet.create({
-  view: { flex: 1, flexDirection: 'column', padding: 5 },
+  view: { flex: 1 },
   text: { marginRight: 10, fontSize: 20 },
   listView: {
     flexDirection: 'row',
