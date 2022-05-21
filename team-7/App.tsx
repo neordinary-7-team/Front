@@ -20,16 +20,16 @@ export default function App() {
   const toggleTheme = useCallback(() => setTheme(({dark}) => (dark ? DefaultTheme : DarkTheme)), []);
 
   return (
-    <AppearanceProvider>
-      <ToggleThemeProvider toggleTheme={toggleTheme}>
-        <SafeAreaProvider>
-          <RecoilRoot>
+    <RecoilRoot>
+      <AppearanceProvider>
+        <ToggleThemeProvider toggleTheme={toggleTheme}>
+          <SafeAreaProvider>
             <NavigationContainer theme={theme}>
               <MainNavigator />
             </NavigationContainer>
-          </RecoilRoot>
-        </SafeAreaProvider>
-      </ToggleThemeProvider>
-    </AppearanceProvider>
+          </SafeAreaProvider>
+        </ToggleThemeProvider>
+      </AppearanceProvider>
+    </RecoilRoot>
   );
 }

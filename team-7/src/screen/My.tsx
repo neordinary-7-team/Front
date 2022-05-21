@@ -9,9 +9,9 @@ import axios from 'axios';
 import ListData from '../../db.json';
 import { Colors } from 'react-native-paper';
 import { useRecoilState } from 'recoil';
-
+import { userState } from '../recoil/atom';
 const My = () => {
-  // const [userIdx, setUserIdx] = useRecoilState(1);
+  const [userIdx, setUserIdx] = useRecoilState<number>(userState);
 
   const navigation = useNavigation();
   const open = useCallback(() => {
@@ -26,7 +26,6 @@ const My = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [list, setList] = useState([]);
-  // console.log(ListData.mylist);
 
   const fetchNews = async () => {
     try {

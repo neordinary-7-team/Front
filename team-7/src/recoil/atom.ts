@@ -8,11 +8,9 @@ const dateState = atom({
     endDate: currentDate,
   },
 });
-const useState = atom<number>({
+const userState = atom<number>({
   key: 'useState',
-  default: {
-    userIdx: 0,
-  },
+  default: 1,
 });
 
-export { dateState, useState };
+export { dateState, userState };
