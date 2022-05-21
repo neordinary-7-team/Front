@@ -1,43 +1,32 @@
-import React, { useState } from 'react'
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { Button, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import {
+  Button,
+  NativeSyntheticEvent,
+  NativeTouchEvent,
+  Text,
+  View,
+} from 'react-native';
+import moment from 'moment';
+import RNDateTimePicker from '@react-native-community/datetimepicker';
 
 export default function TimePicker() {
-    const [date, setDate] = useState(new Date(1598051730000));
-    const [mode, setMode] = useState('date');
-    const [show, setShow] = useState(false);
+  const [date, setDate] = useState('');
+  const onChange = (event: any, selectedDate: any) => {
+    const currentDate = selectedDate;
+    setDate(moment(currentDate).format('YYYY-MM-DD'));
+  };
+  console.log(date);
 
-    const onChange = (event, selectedDate) => {
-      const currentDate = selectedDate;
-      setDate(currentDate);
-    };
-    const showMode = (currentMode) => {
-        DateTimePickerAndroid.open({
-          value: date,
-          onChange,
-          mode: currentMode,
-          is24Hour: true
-        })
-      };
-    
-      const showDatepicker = () => {
-        showMode('date');
-      };
-    
-      const showTimepicker = () => {
-        showMode('time');
-      };
   return (
     <>
-     <View>
       <View>
-        <Button onPress={showDatepicker} title="Show date picker!" />
+        <RNDateTimePicker
+          display="spinner"
+          value={new Date()}
+          onChange={onChange}
+          locale="ko"
+        />
       </View>
-      <View>
-        <Button onPress={showTimepicker} title="Show time picker!" />
-      </View>
-      <Text>selected: {date.toLocaleString()}</Text>
-    </View>
     </>
-  )
+  );
 }

@@ -1,14 +1,11 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import React, { useCallback } from 'react';
 import { ScrollEnabledProvider } from '../contexts';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import NavigationHeader from '../theme/NavigationHeader';
-import ExpoCalendar from '../components/ExpoCalendar'
-import {
-  SafeAreaView,
-  View,
-  MaterialCommunityIcon as Icon,
-} from '../theme';
+import ExpoCalendar from '../components/ExpoCalendar';
+import { SafeAreaView, View, MaterialCommunityIcon as Icon } from '../theme';
+import TimePicker from '../components/TimePicker';
 
 const Home = () => {
   const navigation = useNavigation();
