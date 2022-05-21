@@ -18,20 +18,8 @@ export const View: FC<ViewProps> = ({
   ...props
 }) => {
   const { colors } = useTheme();
-  const backgroundColor = card
-    ? colors.card
-    : primary
-    ? colors.primary
-    : notification
-    ? colors.notification
-    : colors.background;
 
   const borderColor = border ? colors.border : undefined;
   const borderWidth = border ? 1 : undefined;
-  return (
-    <RNView
-      style={[{ backgroundColor, borderColor, borderWidth }, style]}
-      {...props}
-    />
-  );
+  return <RNView style={[{ borderColor, borderWidth }, style]} {...props} />;
 };

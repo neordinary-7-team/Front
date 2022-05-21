@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    backgroundColor: 'white',
   },
   title: {
     fontSize: 20,
@@ -46,6 +47,6 @@ const styles = StyleSheet.create({
   },
   flex: {
     flex: 1,
-    backgroundColor: 'transparent',
+    backgroundColor: 'white',
   },
 });
