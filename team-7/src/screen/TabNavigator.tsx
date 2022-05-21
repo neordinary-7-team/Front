@@ -10,6 +10,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from 'react-native-paper';
 import type { RouteProp, ParamListBase } from '@react-navigation/native';
+// import MyNavigator from './MyNavigator';
+import My from './My';
 type TabBarIconProps = {
   focused: boolean;
   color: string;
@@ -18,15 +20,12 @@ type TabBarIconProps = {
 
 const icons: Record<string, string[]> = {
   HomeNavigator: ['home-circle', 'home-circle-outline'],
+  My: ['account', 'account-outline'],
   Login: ['account-search', 'account-search-outline'],
   SignUp: ['account-clock', 'account-clock-outline'],
 };
 
-const screenOptions = ({
-  route,
-}: {
-  route: RouteProp<ParamListBase, string>;
-}) => {
+const screenOptions = ({ route }: { route: RouteProp<ParamListBase, string> }) => {
   return {
     headerShown: false,
     tabBarIcon: ({ focused, color, size }: TabBarIconProps) => {
@@ -48,8 +47,9 @@ export default function TabNavigator() {
       <Tab.Screen
         name="HomeNavigator"
         component={HomeNavigator}
-        options={{ tabBarLabel: 'Home', tabBarBadge: 3 }}
+        options={{ tabBarLabel: 'Home' }}
       />
+      <Tab.Screen name="My" component={My} />
     </Tab.Navigator>
   );
 }

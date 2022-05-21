@@ -7,15 +7,10 @@ import { SafeAreaView, Text, TextInput, TouchableView, View } from '../theme';
 import TabNavigator from './TabNavigator';
 const Login = () => {
   const [person, setPerson] = useState<D.IPerson>(D.createRandomPerson());
-  const [password, setPassword] = useState<string>(
-    D.random(100000, 1000000).toString()
-  );
+  const [password, setPassword] = useState<string>(D.random(100000, 1000000).toString());
   const focus = useAutoFocus();
   const navigation = useNavigation();
-  const goHomeNavigator = useCallback(
-    () => navigation.navigate('TabNavigator'),
-    []
-  );
+  const goHomeNavigator = useCallback(() => navigation.navigate('TabNavigator'), []);
   const goSingUp = useCallback(() => navigation.navigate('SignUp'), []);
 
   return (
@@ -29,9 +24,7 @@ const Login = () => {
                 onFocus={focus}
                 style={styles.textInput}
                 value={person.email}
-                onChangeText={(email) =>
-                  setPerson((person) => ({ ...person, email }))
-                }
+                onChangeText={(email) => setPerson((person) => ({ ...person, email }))}
                 placeholder="enter your email"
               />
             </View>
@@ -49,11 +42,7 @@ const Login = () => {
               />
             </View>
           </View>
-          <TouchableView
-            notification
-            style={styles.TouchableView}
-            onPress={goHomeNavigator}
-          >
+          <TouchableView notification style={styles.TouchableView} onPress={goHomeNavigator}>
             <Text style={styles.text}>Login</Text>
           </TouchableView>
           <Text style={[styles.text, { marginTop: 15 }]} onPress={goSingUp}>

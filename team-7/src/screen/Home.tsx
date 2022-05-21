@@ -3,12 +3,8 @@ import React, { useCallback } from 'react';
 import { ScrollEnabledProvider } from '../contexts';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import NavigationHeader from '../theme/NavigationHeader';
+import { SafeAreaView, View, MaterialCommunityIcon as Icon } from '../theme';
 import ExpoCalendar from '../components/ExpoCalendar'
-import {
-  SafeAreaView,
-  View,
-  MaterialCommunityIcon as Icon,
-} from '../theme';
 
 const Home = () => {
   const navigation = useNavigation();

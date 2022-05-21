@@ -13,12 +13,10 @@ enableScreens();
 
 export default function App() {
   const scheme = useColorScheme(); //'dark' 혹은 'light'
-  const [theme, setTheme] = useState(
-    scheme === 'dark' ? DarkTheme : DefaultTheme
-  );
+  const [theme, setTheme] = useState(scheme === 'dark' ? DarkTheme : DefaultTheme);
 
   //prettier-ignore
-  const toggleTheme = useCallback(() => setTheme(({dark}) => (dark ? DefaultTheme : DarkTheme)), [])
+  const toggleTheme = useCallback(() => setTheme(({dark}) => (dark ? DefaultTheme : DarkTheme)), []);
 
   return (
     <AppearanceProvider>
