@@ -3,7 +3,7 @@ import MyStack from './components/Navigation/MyStack';
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <View>
       <MyStack />
     </View>
   );
