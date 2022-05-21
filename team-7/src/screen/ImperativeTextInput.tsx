@@ -1,4 +1,3 @@
-import { View, Text } from 'react-native';
 import React, {
   ComponentProps,
   forwardRef,
@@ -8,7 +7,6 @@ import React, {
 } from 'react';
 import { TextInput as RNTextInput, Keyboard } from 'react-native';
 import { TextInput } from '../theme/paper';
-import type { TextInputProps } from '../theme/paper';
 
 export type TextInputMethods = {
   focus: () => void;

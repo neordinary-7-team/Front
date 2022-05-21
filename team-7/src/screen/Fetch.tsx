@@ -10,8 +10,6 @@ const Fetch = () => {
   const [error, resetError] = useAsync(async () => {
     setCountries([]);
     resetError();
-    // Error 타입의 객체가 reject 되는 경우를 테스트 하려면 주석 제거
-    // await Promise.reject(new Error('some error occurs'));
     const countries = await D.getCountries();
     setCountries(countries);
   });
