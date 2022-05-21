@@ -1,10 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React, { useCallback } from 'react';
 import { ScrollEnabledProvider } from '../contexts';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import NavigationHeader from '../theme/NavigationHeader';
-import { SafeAreaView, View, MaterialCommunityIcon as Icon } from '../theme';
-import ExpoCalendar from '../components/ExpoCalendar'
+import ExpoCalendar from '../components/ExpoCalendar';
+import { SafeAreaView, MaterialCommunityIcon as Icon } from '../theme';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -35,6 +35,6 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
-  view: { flex: 1 },
+  view: { flex: 1, backgroundColor: 'white' },
   text: { marginRight: 10, fontSize: 20 },
 });

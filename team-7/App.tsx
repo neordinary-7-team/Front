@@ -8,6 +8,13 @@ import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import 'react-native-gesture-handler';
 import { ToggleThemeProvider } from './src/contexts';
 import MainNavigator from './src/screen/MainNavigator';
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
 
 enableScreens();
 
@@ -22,9 +29,11 @@ export default function App() {
     <AppearanceProvider>
       <ToggleThemeProvider toggleTheme={toggleTheme}>
         <SafeAreaProvider>
-          <NavigationContainer theme={theme}>
-            <MainNavigator />
-          </NavigationContainer>
+          <RecoilRoot>
+            <NavigationContainer theme={theme}>
+              <MainNavigator />
+            </NavigationContainer>
+          </RecoilRoot>
         </SafeAreaProvider>
       </ToggleThemeProvider>
     </AppearanceProvider>

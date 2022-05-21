@@ -15,5 +15,5 @@ export const SafeAreaView: FC<SafeAreaViewProps> = ({
 };
 
 const styles = StyleSheet.create({
-  flex: { flex: 1 },
+  flex: { flex: 1, backgroundColor: 'white' },
 });
