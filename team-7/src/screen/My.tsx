@@ -20,7 +20,6 @@ const My = () => {
     // console.log(e);
     // console.log('-----------------');
   }, []);
-
   return (
     <SafeAreaView>
       <ScrollEnabledProvider>
@@ -35,9 +34,14 @@ const My = () => {
           {ListData.mylist.map((user, index) => (
             <TouchableOpacity key={index} onPress={() => goDetails(user.schedulesIdx)}>
               <View style={[styles.listView]}>
-                {/* <Text>모임장 구분 번호 : {user.userIdx}</Text> */}
-                <Text>모임 구분 번호 {user.schedulesIdx}</Text>
-                <Text>모임 이름 : {user.groupName}</Text>
+                <View style={[styles.leftList]}>
+                  <Icon name="account-music-outline" size={40} color={Colors.lightBlue500} />
+                  {/* <Text>모임장 구분 번호 : {user.userIdx}</Text> */}
+                </View>
+                <View style={[styles.listBlockView]}>
+                  <Text style={[styles.listEachText]}>모임 구분 번호 {user.schedulesIdx}</Text>
+                  <Text style={[styles.listEachText]}>모임 이름 : {user.groupName}</Text>
+                </View>
               </View>
             </TouchableOpacity>
           ))}
@@ -53,6 +57,7 @@ const styles = StyleSheet.create({
   view: { flex: 1, flexDirection: 'column', padding: 5 },
   text: { marginRight: 10, fontSize: 20 },
   listView: {
+    flexDirection: 'row',
     borderWidth: 1,
     borderRadius: 15,
     borderColor: Colors.lightBlue500,
@@ -60,6 +65,15 @@ const styles = StyleSheet.create({
     padding: 5,
     marginBottom: 15,
     alignSelf: 'center',
+    // justifyContent: 'center',
+  },
+  leftList: {
     justifyContent: 'center',
+  },
+  listBlockView: {
+    flexDirection: 'column',
+  },
+  listEachText: {
+    margin: 10,
   },
 });

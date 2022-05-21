@@ -1,10 +1,5 @@
 import React, { useRef, useCallback, useState } from 'react';
-import {
-  StyleSheet,
-  Switch,
-  TextInput as RNTextInput,
-  Keyboard,
-} from 'react-native';
+import { StyleSheet, Switch, TextInput as RNTextInput, Keyboard } from 'react-native';
 
 import { TextInput, Text, View } from '../theme/paper';
 import { useTheme } from 'react-native-paper';
@@ -17,10 +12,7 @@ const Themed = () => {
   const toggleTheme = useToggleTheme();
 
   const textInputRef = useRef<RNTextInput | null>(null);
-  const setFocus = useCallback(
-    () => textInputRef.current?.focus(),
-    [textInputRef.current]
-  );
+  const setFocus = useCallback(() => textInputRef.current?.focus(), [textInputRef.current]);
 
   const autoFocus = useAutoFocus();
   return (
@@ -43,9 +35,7 @@ const Themed = () => {
             style={styles.textInput}
             value={person.email}
             placeholder="enter your email"
-            onChangeText={(email) =>
-              setPerson((person) => ({ ...person, email }))
-            }
+            onChangeText={(email) => setPerson((person) => ({ ...person, email }))}
             onFocus={autoFocus}
           />
         </View>
@@ -56,9 +46,7 @@ const Themed = () => {
             style={styles.TextInput}
             value={person.email}
             placeholder="enter your name"
-            onChangeText={(name) =>
-              setPerson((person) => ({ ...person, name }))
-            }
+            onChangeText={(name) => setPerson((person) => ({ ...person, name }))}
             onFocus={autoFocus}
           />
         </View>
