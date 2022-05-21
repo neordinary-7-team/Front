@@ -1,11 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Pressable } from 'react-native';
-import Constants from 'expo-constants';
 import { Calendar, DateData } from 'react-native-calendars';
-import { dateState } from '../recoil/atom';
 import { View, Text, TextInput } from '../theme';
-import { blue100 } from 'react-native-paper/lib/typescript/styles/colors';
 import moment from 'moment';
+import { Colors } from 'react-native-paper';
 
 export default function App() {
   const [selectedDate, setSelectedDate] = useState<String[]>([
@@ -39,7 +37,7 @@ export default function App() {
           placeholderTextColor={'gray'}
         />
         <Pressable style={styles.btn}>
-          <Text>일정 생성하기</Text>
+          <Text style={styles.text}>일정 생성하기</Text>
         </Pressable>
       </View>
       <Calendar onDayPress={handleDateClick} markedDates={markedDates} />
@@ -51,10 +49,10 @@ export default function App() {
       </View> */}
       <View style={styles.btnView}>
         <Pressable style={[styles.btn]} onPress={() => setSelectedDate([])}>
-          <Text>선택된 날짜 모두 지우기</Text>
+          <Text style={styles.text}>선택된 날짜 모두 지우기</Text>
         </Pressable>
         <Pressable style={styles.btn} onPress={() => setSelectedDate([])}>
-          <Text>일정 공유하기</Text>
+          <Text style={styles.text}>일정 공유하기</Text>
         </Pressable>
       </View>
     </View>
@@ -74,10 +72,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 24,
   },
-  btnView: {},
+  btnView: {
+    padding: 10,
+  },
   btn: {
     alignItems: 'center',
     padding: 10,
+    marginTop: 10,
+    borderRadius: 10,
+    backgroundColor: Colors.lightBlue500,
   },
   textInputView: {
     padding: 10,
@@ -85,5 +88,8 @@ const styles = StyleSheet.create({
   textInput: {
     height: 40,
     padding: 10,
+  },
+  text: {
+    color: 'white',
   },
 });
