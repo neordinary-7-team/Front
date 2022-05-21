@@ -3,29 +3,33 @@ import { Text, View, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import moment from 'moment';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import TimePicker from './TimePicker';
 
 export default function App() {
   const currentDate = moment().format('YYYY-MM-DD');
   return (
+    <>
     <Calendar
       markingType={'period'}
       markedDates={{
-        '2012-05-20': { textColor: 'green' },
-        '2012-05-22': { startingDay: true, color: 'green' },
-        '2012-05-23': {
+        '2022-05-20': { startingDay: true, color: 'green', textColor: 'black' },
+        '2022-05-21': { color: 'green' },
+        '2022-05-22': { color: 'green' },
+        '2022-05-23': {
           selected: true,
           endingDay: true,
           color: 'green',
           textColor: 'gray',
         },
-        '2012-05-04': {
-          disabled: true,
+        '2022-05-04': {
           startingDay: true,
-          color: 'green',
           endingDay: true,
+          color: 'green',
         },
       }}
     />
+    <TimePicker/>
+    </>
   );
 }
 
