@@ -1,0 +1,14 @@
+{
+    "detailDB": [
+        {
+            "userIdx": 1,
+            "groupName": "금요일팟",
+            "schedulesIdx": 546
+        },
+        {
+            "userIdx": 2,
+            "groupName": "토요일팟",
+            "schedulesIdx": 486
+        }
+    ]
+}

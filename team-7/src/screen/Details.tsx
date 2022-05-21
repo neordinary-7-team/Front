@@ -9,16 +9,15 @@ import axios from 'axios';
 import ListData from '../../db.json';
 import { Colors } from 'react-native-paper';
 
-const My = () => {
+const Details = (num: number) => {
+//   console.log(num.route.params.num); // 선택해서 넘어온 모임 구분번호
+
   const navigation = useNavigation();
   const open = useCallback(() => {
     navigation.dispatch(DrawerActions.openDrawer());
   }, []);
-  const goDetails = useCallback((e: number) => {
-    navigation.navigate('Details', { num: e });
-    // console.log('-----------------');
-    // console.log(e);
-    // console.log('-----------------');
+  const logout = useCallback(() => {
+    navigation.navigate('TabNavigator');
   }, []);
 
   return (
@@ -26,28 +25,19 @@ const My = () => {
       <ScrollEnabledProvider>
         <View style={[styles.view]}>
           <NavigationHeader
-            title="내 일정들"
+            title="자세히보기"
             Left={() => <Icon name="menu" size={30} onPress={open} />}
-            // Right={() => <Icon name="logout" size={30} onPress={logout} />}
+            Right={() => <Icon name="replay" size={30} onPress={logout} />}
           />
           {/* 화면상단 문구 */}
-          <Text>자신이 참여한 약속장소들 모음</Text>
-          {ListData.mylist.map((user, index) => (
-            <TouchableOpacity key={index} onPress={() => goDetails(user.schedulesIdx)}>
-              <View style={[styles.listView]}>
-                {/* <Text>모임장 구분 번호 : {user.userIdx}</Text> */}
-                <Text>모임 구분 번호 {user.schedulesIdx}</Text>
-                <Text>모임 이름 : {user.groupName}</Text>
-              </View>
-            </TouchableOpacity>
-          ))}
+          <Text>{num.route.params.num}</Text>
         </View>
       </ScrollEnabledProvider>
     </SafeAreaView>
   );
 };
 
-export default My;
+export default Details;
 
 const styles = StyleSheet.create({
   view: { flex: 1, flexDirection: 'column', padding: 5 },

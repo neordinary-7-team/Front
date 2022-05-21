@@ -10,7 +10,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from 'react-native-paper';
 import type { RouteProp, ParamListBase } from '@react-navigation/native';
-import MyNavigator from './MyNavigator';
+// import MyNavigator from './MyNavigator';
 import My from './My';
 type TabBarIconProps = {
   focused: boolean;

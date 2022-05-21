@@ -16,7 +16,7 @@ export default function App() {
   const [theme, setTheme] = useState(scheme === 'dark' ? DarkTheme : DefaultTheme);
 
   //prettier-ignore
-  const toggleTheme = useCallback(() => setTheme(({dark}) => (dark ? DefaultTheme : DarkTheme)), [])
+  const toggleTheme = useCallback(() => setTheme(({dark}) => (dark ? DefaultTheme : DarkTheme)), []);
 
   return (
     <AppearanceProvider>
