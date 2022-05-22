@@ -1,6 +1,5 @@
 import { Alert, StyleSheet } from 'react-native';
 import React, { useCallback, useState } from 'react';
-import * as D from '../data';
 import { AutoFocusProvider, useAutoFocus } from '../contexts';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView, Text, TextInput, TouchableView, View } from '../theme';
@@ -15,17 +14,19 @@ const SignUp = () => {
   const focus = useAutoFocus();
   const navigation = useNavigation();
   const goLogin = useCallback(() => navigation.navigate('Login'), []);
-  const goHomeNavigator = useCallback(() => {
-    axios
+  const goHomeNavigator = async () => {
+    setUsername('');
+    setEmail('');
+    setPassword('');
+    await axios
       .post('http://15.165.67.130:9000/users/signup', {
         name: username,
         email: email,
         password: password,
       })
       .then(function (response) {
-        console.log(response.data);
-        if (response.data.message == '이미 존재하는 유저입니다.') {
-          Alert.alert('이미 가입한 이메일입니다!!!!!!!!!!!!!!!!!!!');
+        if (response.data.code == 2400) {
+          Alert.alert('이미 가입한 이메일입니다༼;´༎ຶ۝༎ຶ༽');
         } else {
           navigation.navigate('TabNavigator');
         }
@@ -33,7 +34,8 @@ const SignUp = () => {
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  };
+
   return (
     <SafeAreaView>
       <View style={styles.view}>
@@ -46,7 +48,7 @@ const SignUp = () => {
                 onFocus={focus}
                 style={styles.textInput}
                 value={username}
-                onChangeText={setUsername}
+                onChangeText={(username) => setUsername(username)}
                 placeholder="what is your name?"
               />
             </View>

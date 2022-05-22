@@ -1,15 +1,13 @@
 import { Alert, StyleSheet } from 'react-native';
 import React, { useCallback, useState } from 'react';
-import * as D from '../data';
 import { AutoFocusProvider, useAutoFocus } from '../contexts';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView, Text, TextInput, TouchableView, View } from '../theme';
-import TabNavigator from './TabNavigator';
 import axios from 'axios';
 import { Colors } from 'react-native-paper';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const focus = useAutoFocus();
@@ -18,14 +16,14 @@ const Login = () => {
   const goHomeNavigator = useCallback(() => {
     axios
       .post('http://15.165.67.130:9000/users/login', {
-        name: username,
+        email: email,
         password: password,
       })
       .then(function (response) {
         if (response.data.code == 2004) {
-          Alert.alert('잘못된 비밀번호 입니다!!!!!!!!!!!!!!!!!!!');
+          Alert.alert('༼;´༎ຶ۝༎ຶ༽잘못된 비밀번호 입니다.');
         } else if (response.data.code == 2101) {
-          Alert.alert('존재하지 않는 유저 입니다!!!!!!!!!!!!!!!!!!!');
+          Alert.alert('존재하지 않는 유저 입니다.');
         } else {
           navigation.navigate('TabNavigator');
         }
@@ -46,9 +44,9 @@ const Login = () => {
               <TextInput
                 onFocus={focus}
                 style={styles.textInput}
-                value={username}
-                onChangeText={setUsername}
-                placeholder="what is your name?"
+                value={email}
+                onChangeText={setEmail}
+                placeholder="what is your email?"
               />
             </View>
           </View>
