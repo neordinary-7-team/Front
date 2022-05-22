@@ -68,7 +68,7 @@ export default function App() {
     setCreateSchedule(false);
     const route = `34.64.230.17:3000/${resultCode}`;
     copyToClipboard(route);
-    Alert.alert(route);
+    Alert.alert('일정 공유링크가 복사되었습니다');
   };
 
   return (

@@ -10,18 +10,19 @@ import ListData from '../../db.json';
 import { Colors } from 'react-native-paper';
 import { useRecoilState } from 'recoil';
 import { userState } from '../recoil/atom';
+import { BorderlessButton, ScrollView } from 'react-native-gesture-handler';
 const My = () => {
   const [userIdx, setUserIdx] = useRecoilState<number>(userState);
+  useEffect(() => {
+    console.log('userIdx : ', userIdx);
+  }, [userIdx]);
 
   const navigation = useNavigation();
   const open = useCallback(() => {
     navigation.dispatch(DrawerActions.openDrawer());
   }, []);
   const goDetails = useCallback((e: number) => {
-    navigation.navigate('Details', { num: e });
-    // console.log('-----------------');
-    // console.log(e);
-    // console.log('-----------------');
+    navigation.navigate('Details', { e });
   }, []);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -32,9 +33,9 @@ const My = () => {
       setList([]);
       setError(null);
       setLoading(true);
-      const response = await axios.get('http://15.165.67.130:9000/schedules/1');
-      console.log(response.data.result);
-      setList(response.data.result); //api잘모슸ㅁ ㅋㅋ수정해여해
+      const response = await axios.get(`http://15.165.67.130:9000/schedules/owner/1`); //사용자번호 넣으면 만든 일정 조회
+      console.log('만든 일정 ', response.data.result);
+      setList(response.data.result);
     } catch (e) {
       console.log('err');
       console.log(e);
@@ -48,28 +49,28 @@ const My = () => {
   return (
     <SafeAreaView>
       <ScrollEnabledProvider>
-        <View style={[styles.view]}>
+        <ScrollView style={[styles.view]}>
           <NavigationHeader
             title="내 일정들"
             Left={() => <Icon name="menu" size={30} onPress={open} />}
             Right={() => <Icon name="logout" size={30} color="white" />}
           />
           {/* 화면상단 문구 */}
-          {ListData.mylist.map((user, index) => (
-            <TouchableOpacity key={index} onPress={() => goDetails(user.schedulesIdx)}>
+          {/* <Text>일단 내가 만든 일정들 모음</Text>r */}
+          {list.map((each, index) => (
+            <TouchableOpacity key={index} onPress={() => goDetails(each.schedulesIdx)}>
               <View style={[styles.listView]}>
                 <View style={[styles.leftList]}>
                   <Icon name="account-music-outline" size={40} color={Colors.lightBlue500} />
-                  {/* <Text>모임장 구분 번호 : {user.userIdx}</Text> */}
                 </View>
                 <View style={[styles.listBlockView]}>
-                  <Text style={[styles.listEachText]}>모임 구분 번호 {user.schedulesIdx}</Text>
-                  <Text style={[styles.listEachText]}>모임 이름 : {user.groupName}</Text>
+                  <Text style={[styles.groupNameText]}>{each.groupName}</Text>
+                  <Text style={[styles.datesText]}>{each.dates[0]} 에 만나요 📊</Text>
                 </View>
               </View>
             </TouchableOpacity>
           ))}
-        </View>
+        </ScrollView>
       </ScrollEnabledProvider>
     </SafeAreaView>
   );
@@ -98,7 +99,11 @@ const styles = StyleSheet.create({
   listBlockView: {
     flexDirection: 'column',
   },
-  listEachText: {
+  groupNameText: {
+    margin: 10,
+    fontWeight: 'bold',
+  },
+  datesText: {
     margin: 10,
   },
 });
